@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Brickowl User Details" max_length="40" name="x_snc_ecfr02demo_0_brickable_user_details" sizeclass="2" type="collection">
+        <element label="Has Store?" max_length="40" name="has_store" type="boolean"/>
+        <element label="Key" max_length="128" name="key" type="string"/>
+        <element label="Username" max_length="40" name="username" type="string"/>
+        <element label="User ID" max_length="40" name="user_id" type="string"/>
+    </element>
+</database>

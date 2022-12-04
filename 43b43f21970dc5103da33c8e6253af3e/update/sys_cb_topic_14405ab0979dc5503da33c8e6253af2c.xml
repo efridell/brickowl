@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category>3efd22da0b203300a1b16c2367673a10</category>
+        <channels/>
+        <connect_queue/>
+        <description>This topic is used to reset the Citrix Desktop &amp; App sessions using connector.</description>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.36",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "a91c1228c65149eb978df19134983509": {
+          "id": "a91c1228c65149eb978df19134983509",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "value": "(function execute() {\n\n    return gs.getMessage(\"Sure, I can help with a Citrix session.\\nGive me a minute to check a couple things.\");\n\n})()\n",
+            "mode": "script"
+          }
+        },
+        "10d1e63004814f2d9f20cede61891204": {
+          "id": "10d1e63004814f2d9f20cede61891204",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "ffe5c05bf4364fef89d55063101a34cc": {
+          "id": "ffe5c05bf4364fef89d55063101a34cc",
+          "name": "Fetch user sessions",
+          "script": "(function execute() {\n\n    var ctxUserSession = new x_cion_citrix_it_s.CTXUserSession();\n    var username = gs.getUserName(); \n    var sessions = ctxUserSession.getUserSessions(username);\n    vaVars.sessions = JSON.stringify(sessions);\n    vaVars.sessions_count = sessions.length.toFixed(0);\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "56b3f12560b941b086b89d6d00571100": {
+          "id": "56b3f12560b941b086b89d6d00571100",
+          "stepType": "Decision",
+          "name": "Citrix session available to reset?"
+        },
+        "cde47fd5a3174f978ebc3ccd510f5ec3": {
+          "id": "cde47fd5a3174f978ebc3ccd510f5ec3",
+          "stepType": "TextOutput",
+          "name": "Acknowledgement",
+          "value": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  },
+                  {
+                    "text": "Looks like you don't have any sessions available to reset."
+                  },
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "secure": false
+        },
+        "b61346d01e454aa29966c59aa75249a9": {
+          "stepType": "ChoicePrompt",
+          "name": "Single session",
+          "prompt": {
+            "value": "(function execute() {\n    return gs.getMessage(\"OK, shall I go ahead and reset {0} for you?\", vaVars.user_session_label);\n})()\n",
+            "mode": "script"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "fef44834699e47778007cdee5db10300",
+          "id": "b61346d01e454aa29966c59aa75249a9",
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "hasCardHeader": false
+        },
+        "ab8a19fb322541cd80ed773e60a7b5ce": {
+          "id": "ab8a19fb322541cd80ed773e60a7b5ce",
+          "stepType": "Decision",
+          "name": "Reset the session?"
+        },
+        "82c26cffab9f4ed998c866e77d3e33bd": {
+          "id": "82c26cffab9f4ed998c866e77d3e33bd",
+          "stepType": "Decision",
+          "name": "Open ticket"
+        },
+        "99c6defab642429a8eb687ede260f422": {
+          "stepType": "ChoicePrompt",
+          "name": "Open ticket",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": ""
+                  },
+                  {
+                    "text": "I'll open a ticket to get someone to help you with this, OK?"
+                  },
+                  {
+                    "text": ""
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "ce3c4641102d46cd8848f5a03ff475d9",
+          "id": "99c6defab642429a8eb687ede260f422",
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "hasCardHeader": false
+        },
+        "8ea9379a0ed541f782e182ec35b591e1": {
+          "id": "8ea9379a0ed541f782e182ec35b591e1",
+          "name": "Session label",
+          "script": "(function execute() {\n\t\n\tvar current_applications = [];\n\n\tif (vaInputs.all_user_sessions.getValue().toString() != 'different_session' &amp;&amp; vaInputs.all_user_sessions.getValue().toString() != 'all') {\n\t\tvar sessions_list = JSON.parse(vaVars.sessions);\n\t\tvaVars.user_option = vaInputs.all_user_sessions;\n\t\tvar user_choice = vaVars.user_option[0];\n\t\tvar site_id = sessions_list[user_choice].SiteId;\n\t\tvar session_key = sessions_list[user_choice].SessionKey;\n\t\tvaVars.session_type = sessions_list[user_choice].SessionType;\n\t\tvaVars.sessions = JSON.stringify([sessions_list[user_choice]]);\n\n\t\tif (vaVars.session_type == vaVars.desktop) {\n\n\t\t\tvar published_name = sessions_list[user_choice].LaunchedViaPublishedName;\n\t\t\tvar user_session_label = [vaVars.session_type , \" - \", site_id, ' - ', published_name];\n\t\t\tvaVars.desktop_sessions = user_session_label.join(\"\")\n\n\t\t}\n\t\telse if (vaVars.session_type == vaVars.application) {\n\n\t\t\tcurrent_applications = sessions_list[user_choice].ApplicationsInUse;\n\t\t\tvar user_session_label = [vaVars.session_type , \" - \" , site_id, ' - ' ,current_applications]\n\t\t\tvaVars.app_sessions = user_session_label.join(\"\");\n\n\t\t}\n\n\t}\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "cbcc7ebd982d4711b5ee67fad21524f7": {
+          "id": "cbcc7ebd982d4711b5ee67fad21524f7",
+          "name": "Session label",
+          "script": "(function execute() {\n\n    var sessions_list = JSON.parse(vaVars.sessions);\n    var type = sessions_list[0].SessionType;\n    var site_id = sessions_list[0].SiteId;\n    var session_key = sessions_list[0].SessionKey;\n    var published_name = sessions_list[0].LaunchedViaPublishedName;\n    vaVars.session_type = sessions_list[0].SessionType;\n    var current_applications = sessions_list[0].ApplicationsInUse;\n\n\n\t\tif (vaVars.session_type == vaVars.desktop) {\n\n\t\t\tvar published_name = sessions_list[0].LaunchedViaPublishedName;\n\t\t\tvar user_session_label = [vaVars.session_type , \" - \", site_id, ' - ', published_name];\n\t\t\tvaVars.user_session_label = user_session_label.join(\"\")\n\n\t\t}\n\t\telse if (vaVars.session_type == vaVars.application) {\n\n\t\t\tcurrent_applications = sessions_list[0].ApplicationsInUse;\n\t\t\tcurrent_applications = current_applications.join(\", \")\n\t\t\tvar user_session_label = [vaVars.session_type , \" - \" , site_id, ' - ', current_applications]\n\t\t\tvaVars.user_session_label = user_session_label.join(\"\");\n\n\t\t}\n\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "76a4957a342b45c28bfc5cd3525cb69d": {
+          "stepType": "ReferenceChoicePrompt",
+          "name": "All user sessions",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Which session do you want to reset?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "7757b604e2f14a72a3db3ffc56240138",
+          "id": "76a4957a342b45c28bfc5cd3525cb69d",
+          "mode": "external",
+          "script": "(function execute() {\n\n    var current_applications = [];\n    var options = [];\n    var desktop_sessions = [];\n    var app_sessions = [];\n    var app_count = 0;\n    var desktop_count = 0;\n\n    var sessions_list = JSON.parse(vaVars.sessions);\n    for (var i = 0; i &lt; sessions_list.length; i++) {\n        var published_name = sessions_list[i].LaunchedViaPublishedName;\n        var type  = sessions_list[i].SessionType;\n        var siteId = sessions_list[i].SiteId;\n\n        if (type == vaVars.desktop) {\n            options.push({\n                \"value\": i,\n                \"label\": type + ' - ' + siteId + ' - ' + published_name\n            });\n            var session_details = [siteId, \" - \", published_name ];\n            desktop_sessions[desktop_count] = session_details.join(\"\");\n            desktop_count++;\n        }\n        else if (type == vaVars.application) {\n            var current_applications = sessions_list[i].ApplicationsInUse;\n            current_applications = current_applications.join(\", \")\n            vaVars.siteId = siteId;\n            options.push({\n                \"value\": i,\n                \"label\": type + ' - ' + siteId + ' - ' + current_applications\n            });\n            var session_details = [ siteId, \" - \", current_applications ];\n            app_sessions[app_count] = session_details.join(\"\");\n            app_count++;\n\n        }\n\n    }\n    vaVars.desktop_count = desktop_count.toFixed(0);\n    vaVars.app_count = app_count.toFixed(0);\n    \n    options.push({\n        \"value\": 'different_session',\n        \"label\": gs.getMessage('Different session')\n    });\n    options.push({\n        \"value\": 'all',\n        \"label\": gs.getMessage('All my sessions')\n    });\n    desktop_sessions = desktop_sessions.join(\"; \")\n    app_sessions = app_sessions.join(\"; \")\n    vaVars.desktop_sessions = desktop_sessions;\n    vaVars.app_sessions = app_sessions;\n\n    return options;\n\n})()\n",
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "No sessions are found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "condition": {
+            "value": "(function execute() {\n\n    var current_applications = [];\n    var options = [];\n    var desktop_sessions = [];\n    var app_sessions = [];\n    var app_count = 0;\n    var desktop_count = 0;\n\n    var sessions_list = JSON.parse(vaVars.sessions);\n    for (var i = 0; i &lt; sessions_list.length; i++) {\n        var published_name = sessions_list[i].LaunchedViaPublishedName;\n        var type  = sessions_list[i].SessionType;\n        var siteId = sessions_list[i].SiteId;\n\n        if (type == vaVars.desktop) {\n            options.push({\n                \"value\": i,\n                \"label\": type + ' - ' + siteId + ' - ' + published_name\n            });\n            var session_details = [siteId, \" - \", published_name ];\n            desktop_sessions[desktop_count] = session_details.join(\"\");\n            desktop_count++;\n        }\n        else if (type == vaVars.application) {\n            var current_applications = sessions_list[i].ApplicationsInUse;\n            current_applications = current_applications.join(\", \")\n            vaVars.siteId = siteId;\n            options.push({\n                \"value\": i,\n                \"label\": type + ' - ' + siteId + ' - ' + current_applications\n            });\n            var session_details = [ siteId, \" - \", current_applications ];\n            app_sessions[app_count] = session_details.join(\"\");\n            app_count++;\n\n        }\n\n    }\n    vaVars.desktop_count = desktop_count.toFixed(0);\n    vaVars.app_count = app_count.toFixed(0);\n    \n    options.push({\n        \"value\": 'different_session',\n        \"label\": gs.getMessage('Different session')\n    });\n    options.push({\n        \"value\": 'all',\n        \"label\": gs.getMessage('All my sessions')\n    });\n    desktop_sessions = desktop_sessions.join(\"; \")\n    app_sessions = app_sessions.join(\"; \")\n    vaVars.desktop_sessions = desktop_sessions;\n    vaVars.app_sessions = app_sessions;\n\n    return options;\n\n})()\n",
+            "mode": "external_script"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "hasCardHeader": false
+        },
+        "e671a74650b54672a239fb702bbf7220": {
+          "id": "e671a74650b54672a239fb702bbf7220",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "a23c776e54734405aefbc2627d3b7f87": {
+          "id": "a23c776e54734405aefbc2627d3b7f87",
+          "stepType": "TableOutput",
+          "name": "Session list",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Sessions"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "script",
+          "script": "(function execute() {\n    var headers = [];\n    var rows = [];\n    if (vaInputs.all_user_sessions == 'all') {\n        if (vaVars.desktop_count != 0 ) {\n            rows.push([\n                vaVars.desktop+\":\",\n                vaVars.desktop_sessions\n            ]);\n        } \n        if (vaVars.app_count != 0 ) {\n            rows.push([\n                vaVars.application+\":\",\n                vaVars.app_sessions\n            ]);\n        }\n    }\n    else {\n        if (vaVars.session_type == \"Desktop\") {\n            rows.push([\n                vaVars.desktop+\":\",\n                vaVars.desktop_sessions\n            ]);\n        }else if (vaVars.session_type == \"Application\") {\n            rows.push([\n                vaVars.application+\":\",\n                vaVars.app_sessions\n            ]);\n        }\n    }\n    return {\n        columnHeaders: headers,\n        columnValues: rows\n    };\n})()",
+          "tableName": "",
+          "tableCondition": {
+            "value": "",
+            "mode": "glide_query"
+          },
+          "columns": [
+            {
+              "key": "",
+              "value": "",
+              "label": ""
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "No records found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "9368c13dca5d4efb9cc830091b8692f9": {
+          "id": "9368c13dca5d4efb9cc830091b8692f9",
+          "stepType": "ScriptOutput",
+          "name": "Session reset confirmation message",
+          "output_type": "single_part",
+          "script": "(function execute() {\n\n    if (vaInputs.all_user_sessions == 'all')\n        return gs.getMessage(\"OK, resetting these:\");\n\n    else if (vaInputs.all_user_sessions == 'different_session')\n        return gs.getMessage(\"I don't see any other sessions for you.\");\n\n    else\n        return gs.getMessage(\"OK, resetting this:\");\n})()",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "638431e8fe284bc08b33bd55460b2044": {
+          "id": "638431e8fe284bc08b33bd55460b2044",
+          "stepType": "TableOutput",
+          "name": "Sessions list",
+          "header": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Sessions "
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "displayColumnHeaders": true,
+          "dataSourceType": "script",
+          "script": "(function execute() {\n\n    var headers = [];\n    var rows = [];\n    if (vaVars.session_type == vaVars.desktop) {\n        rows.push([\n            vaVars.desktop+\":\",\n            vaVars.user_session_label\n        ]);\n    }else if (vaVars.session_type == vaVars.application) {\n        rows.push([\n            vaVars.application+\":\",\n            vaVars.user_session_label\n        ]);\n    }\n    \n    return {\n        columnHeaders: headers,\n        columnValues: rows\n    };\n})()\n\n",
+          "tableName": "",
+          "tableCondition": {
+            "value": "",
+            "mode": "glide_query"
+          },
+          "columns": [
+            {
+              "key": "",
+              "value": "",
+              "label": ""
+            }
+          ],
+          "noRecordsResponseMsg": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "No records found"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "3c976e2b4c2f4020a61644d036227221": {
+          "id": "3c976e2b4c2f4020a61644d036227221",
+          "stepType": "TextOutput",
+          "name": "Confirmation message",
+          "value": {
+            "value": "(function execute() {\n    return gs.getMessage(\"OK, resetting this:\");\n})()\n",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "secure": false
+        },
+        "ee023212c579455fbc64e02c3af001a7": {
+          "id": "ee023212c579455fbc64e02c3af001a7",
+          "stepType": "TextOutput",
+          "name": "Final check message",
+          "secure": false,
+          "value": {
+            "value": "(function execute() {\n\n    if (vaInputs.all_user_sessions == 'all')\n        return gs.getMessage(\"You can check if they've been reset in a minute.\");\n    else\n        return gs.getMessage(\"You can check if it's been reset in a minute.\");\n\n})()",
+            "mode": "script"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "c3df876b51dc40ff8077da201d9171bc": {
+          "id": "c3df876b51dc40ff8077da201d9171bc",
+          "stepType": "ReusableTopic",
+          "name": "Create Incident",
+          "fields": [],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "reusableTopicChoice": "Deflection",
+          "reusableTopicId": "7fb4ca055303201033cdddeeff7b12b3",
+          "inputs": {
+            "deflection_configuration": {
+              "value": "93d2f7645383201033cdddeeff7b1208",
+              "mode": "simple",
+              "type": "Reference",
+              "table": "ssa_deflection_configuration"
+            },
+            "deflection_pattern": {
+              "value": "0273885253213010000dddeeff7b1210",
+              "mode": "string",
+              "type": "Reference",
+              "table": "ssa_deflection_pattern"
+            },
+            "activity_table": {
+              "value": "",
+              "mode": "simple",
+              "type": "String"
+            },
+            "activity_ids": {
+              "value": "",
+              "mode": "simple",
+              "type": "String"
+            }
+          },
+          "variableIds": [],
+          "outputs": []
+        },
+        "27bd10994fb44e9980e485abab3c2423": {
+          "id": "27bd10994fb44e9980e485abab3c2423",
+          "name": "Batched message",
+          "script": "(function execute() {\n    vaSystem.sendBatchedMessages();  \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "d4f62c3d64fa48f5833cba3fc1a5efc2": {
+          "id": "d4f62c3d64fa48f5833cba3fc1a5efc2",
+          "name": "Reset sessions",
+          "invocationType": "action",
+          "stepType": "FlowAction",
+          "actionSpoke": "134450a0b3781300787162ac16a8dc1e",
+          "actionSpokeAction": "c98a53d7532030109cc4ddeeff7b12f1",
+          "actionWaitType": "async",
+          "actionRunAs": "session_user",
+          "actionSecureField": false,
+          "actionSelectSecureField": "",
+          "actionPromptSecureField": {
+            "mode": "simple",
+            "value": ""
+          },
+          "actionConfirmPromptSecureField": {
+            "mode": "simple",
+            "value": ""
+          },
+          "actionNonSecureChannelMessage": {
+            "mode": "simple",
+            "value": ""
+          },
+          "actionInputs": {
+            "input-sessions": {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    },
+                    {
+                      "type": "datapill",
+                      "dataPill": {
+                        "value": "{{vaVars.sessions}}",
+                        "displayValue": "Script Variables➛sessions"
+                      },
+                      "children": [
+                        {
+                          "text": ""
+                        }
+                      ]
+                    },
+                    {
+                      "text": ""
+                    }
+                  ]
+                }
+              ],
+              "mode": "string"
+            }
+          },
+          "actionOutputs": {
+            "output-__action_status__": [
+              {
+                "id": "b53379f334914960988a4284a75e3fb4",
+                "mapping": "Action Status",
+                "value": "Action Status",
+                "disabled": false,
+                "type": "object"
+              }
+            ],
+            "output-__dont_treat_as_error__": [
+              {
+                "id": "8223d96bf7134be0b13f6d4c9d7a2387",
+                "mapping": "Don't Treat as Error",
+                "value": "Don't Treat as Error",
+                "disabled": false,
+                "type": "boolean"
+              }
+            ]
+          },
+          "actionDefinition": {
+            "id": "c98a53d7532030109cc4ddeeff7b12f1",
+            "latest_snapshot_id": "c98a53d7532030109cc4ddeeff7b12f1",
+            "type": "action",
+            "name": "itsm_va_conversations__reset_citrix_sessions",
+            "label": "ITSM VA conversations - Reset Citrix Sessions",
+            "scope_id": "134450a0b3781300787162ac16a8dc1e",
+            "description": "This action will reset the Citrix Desktop &amp; App sessions using a connector.",
+            "category": "",
+            "parameters_have_loaded": true,
+            "input_parameters": [
+              {
+                "supported_input_modes": [
+                  "script",
+                  "data_pill",
+                  "data_entry"
+                ],
+                "name": "sessions",
+                "label": "sessions",
+                "type": "string",
+                "order": 1,
+                "required": true
+              }
+            ],
+            "output_parameters": [
+              {
+                "name": "__action_status__",
+                "label": "Action Status",
+                "type": "object",
+                "order": 0,
+                "required": false
+              },
+              {
+                "name": "__dont_treat_as_error__",
+                "label": "Don't Treat as Error",
+                "type": "boolean",
+                "order": 1,
+                "required": false
+              }
+            ]
+          },
+          "subflowSecureField": false,
+          "subflowSelectSecureField": "",
+          "subflowPromptSecureField": {
+            "mode": "simple",
+            "value": ""
+          },
+          "subflowConfirmPromptSecureField": {
+            "mode": "simple",
+            "value": ""
+          },
+          "subflowNonSecureChannelMessage": {
+            "mode": "simple",
+            "value": "This action is not supported on this channel."
+          },
+          "variableIds": [],
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "a49d17970b7142f894b236223c7e1dc6": {
+          "id": "a49d17970b7142f894b236223c7e1dc6",
+          "name": "Batched message",
+          "script": "(function execute() {\n    vaSystem.sendBatchedMessages();  \n})()\n\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "4a2665f7d7b14f149a6a439c126d60e8",
+          "edgeType": "Edge",
+          "source": "a49d17970b7142f894b236223c7e1dc6",
+          "target": "ffe5c05bf4364fef89d55063101a34cc",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "feb3ee7861f942a48193dbad10a9c0b7",
+          "edgeType": "Edge",
+          "source": "a91c1228c65149eb978df19134983509",
+          "target": "a49d17970b7142f894b236223c7e1dc6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "66da7d016e0341a59a8ce6c534537a50",
+          "edgeType": "Edge",
+          "source": "d4f62c3d64fa48f5833cba3fc1a5efc2",
+          "target": "10d1e63004814f2d9f20cede61891204",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "276ddf55024142a5bcd0c9b0bf349d92",
+          "edgeType": "Edge",
+          "source": "c3df876b51dc40ff8077da201d9171bc",
+          "target": "10d1e63004814f2d9f20cede61891204",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f2f5cbffc4ab4641ac62d6bc46df1ce7",
+          "edgeType": "Edge",
+          "source": "ee023212c579455fbc64e02c3af001a7",
+          "target": "27bd10994fb44e9980e485abab3c2423",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "676f80272684450eb2d86a5a649e2984",
+          "edgeType": "Edge",
+          "source": "9368c13dca5d4efb9cc830091b8692f9",
+          "target": "e671a74650b54672a239fb702bbf7220",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "72edab998c58412f93756e6562897c6a",
+          "edgeType": "Edge",
+          "source": "a23c776e54734405aefbc2627d3b7f87",
+          "target": "ee023212c579455fbc64e02c3af001a7",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f28eaa970a4246b8ba0a0eefe0236601",
+          "edgeType": "Edge",
+          "source": "ffe5c05bf4364fef89d55063101a34cc",
+          "target": "56b3f12560b941b086b89d6d00571100",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "d3e5ea605132466cb779e02fa6ddc510",
+          "edgeType": "Branch",
+          "source": "82c26cffab9f4ed998c866e77d3e33bd",
+          "target": "10d1e63004814f2d9f20cede61891204",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.open_ticket=no",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "f48f0cd4bf7b4fab9e4081fe80cf5e40",
+          "edgeType": "Edge",
+          "source": "638431e8fe284bc08b33bd55460b2044",
+          "target": "ee023212c579455fbc64e02c3af001a7",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "1946f97374124d4fa778af07cf70ffba",
+          "edgeType": "Branch",
+          "source": "e671a74650b54672a239fb702bbf7220",
+          "target": "a23c776e54734405aefbc2627d3b7f87",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaInputs.all_user_sessions != 'different_session' \n})()\n"
+          },
+          "label": "Known sessions"
+        },
+        {
+          "id": "b0a91ba864504d0d83ec5350e1e90c2c",
+          "edgeType": "Branch",
+          "source": "e671a74650b54672a239fb702bbf7220",
+          "target": "99c6defab642429a8eb687ede260f422",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaInputs.all_user_sessions == 'different_session';\n})()\n"
+          },
+          "label": "Different session"
+        },
+        {
+          "id": "9ec773d7b2c8479692d62c694ba1c40e",
+          "edgeType": "Branch",
+          "source": "56b3f12560b941b086b89d6d00571100",
+          "target": "cde47fd5a3174f978ebc3ccd510f5ec3",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.sessions_count == 0;\n})()\n"
+          },
+          "label": "No session found"
+        },
+        {
+          "id": "747e7369b1a14aa7b98bbdb4a4a786ef",
+          "edgeType": "Branch",
+          "source": "56b3f12560b941b086b89d6d00571100",
+          "target": "76a4957a342b45c28bfc5cd3525cb69d",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n    return vaVars.sessions_count &gt; 1;\n})()\n"
+          },
+          "label": "More than one session"
+        },
+        {
+          "id": "ce2de68b300a42499f26ceefb24efb48",
+          "edgeType": "Edge",
+          "source": "76a4957a342b45c28bfc5cd3525cb69d",
+          "target": "8ea9379a0ed541f782e182ec35b591e1",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "9116352166db4ddf93ff3abfb2d584ac",
+          "edgeType": "Edge",
+          "source": "b61346d01e454aa29966c59aa75249a9",
+          "target": "ab8a19fb322541cd80ed773e60a7b5ce",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "1c56cf4068e3412ca9e4488bb78f87b5",
+          "edgeType": "Edge",
+          "source": "cde47fd5a3174f978ebc3ccd510f5ec3",
+          "target": "99c6defab642429a8eb687ede260f422",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "cfe10dd4e4754219bb821437b27f8403",
+          "edgeType": "Branch",
+          "source": "56b3f12560b941b086b89d6d00571100",
+          "target": "cbcc7ebd982d4711b5ee67fad21524f7",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "mode": "script",
+            "value": "(function execute() {\n\n    return vaVars.sessions_count == 1;\n\n})()\n"
+          },
+          "label": "Just one session"
+        },
+        {
+          "id": "df9f53510d1f45b697b56117ff9fa07d",
+          "edgeType": "Edge",
+          "source": "99c6defab642429a8eb687ede260f422",
+          "target": "82c26cffab9f4ed998c866e77d3e33bd",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "71a93c2c37c9411296c77860f7525e4b",
+          "edgeType": "Branch",
+          "source": "ab8a19fb322541cd80ed773e60a7b5ce",
+          "target": "10d1e63004814f2d9f20cede61891204",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.single_session=no",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "9197a7f1a9664ed5bbd9fcfbd6cb132c",
+          "edgeType": "Edge",
+          "source": "cbcc7ebd982d4711b5ee67fad21524f7",
+          "target": "b61346d01e454aa29966c59aa75249a9",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "52d5faf642ce4e4aa76f4f5c8c357a24",
+          "edgeType": "Edge",
+          "source": "8ea9379a0ed541f782e182ec35b591e1",
+          "target": "9368c13dca5d4efb9cc830091b8692f9",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "759a4fd46f48409189848a6010fc7536",
+          "edgeType": "Branch",
+          "source": "ab8a19fb322541cd80ed773e60a7b5ce",
+          "target": "3c976e2b4c2f4020a61644d036227221",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.single_session=yes",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "698c9bb707d040208c6a5f17cae5af8c",
+          "edgeType": "Edge",
+          "source": "3c976e2b4c2f4020a61644d036227221",
+          "target": "638431e8fe284bc08b33bd55460b2044",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7ee0184719224bbebe1a78daba35e055",
+          "edgeType": "Branch",
+          "source": "82c26cffab9f4ed998c866e77d3e33bd",
+          "target": "c3df876b51dc40ff8077da201d9171bc",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.open_ticket=yes",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "67016e86475c41e589e2b3d50fd5a903",
+          "edgeType": "Edge",
+          "source": "27bd10994fb44e9980e485abab3c2423",
+          "target": "d4f62c3d64fa48f5833cba3fc1a5efc2",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "5a94a6b0d8ac4d888702ffa25176d9c0": {
+      "category": "vaInputs",
+      "id": "5a94a6b0d8ac4d888702ffa25176d9c0",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "24a75e942450445fa535493198a7dd59": {
+      "id": "24a75e942450445fa535493198a7dd59",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "sessions",
+      "label": "sessions",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d336d9b3484b497c870d5b8667901d0a": {
+      "id": "d336d9b3484b497c870d5b8667901d0a",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "session_output",
+      "label": "session_output",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "9c3a1bdaf07e45e7ae98db501233c656": {
+      "id": "9c3a1bdaf07e45e7ae98db501233c656",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "sessions_count",
+      "label": "sessions_count",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "fef44834699e47778007cdee5db10300": {
+      "id": "fef44834699e47778007cdee5db10300",
+      "name": "single_session",
+      "label": "Single Session",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": "no",
+          "checked": true
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "ce3c4641102d46cd8848f5a03ff475d9": {
+      "id": "ce3c4641102d46cd8848f5a03ff475d9",
+      "name": "open_ticket",
+      "label": "Open Ticket",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": "no",
+          "checked": true
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "245ad04dfcf74588a5ce92b296eabfca": {
+      "id": "245ad04dfcf74588a5ce92b296eabfca",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "incident_short_description",
+      "label": "incident_short_description",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "e882083590004bf7ab6d9af9d5273423": {
+      "id": "e882083590004bf7ab6d9af9d5273423",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "user_session_label",
+      "label": "user_session_label",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "a0764da7d13e4d1f894c81ff3ef75607": {
+      "id": "a0764da7d13e4d1f894c81ff3ef75607",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "current_applications",
+      "label": "current_applications",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "391fdccfb3dc4d90b98b73de69b7f7cc": {
+      "id": "391fdccfb3dc4d90b98b73de69b7f7cc",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "user_option",
+      "label": "user_option",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "7757b604e2f14a72a3db3ffc56240138": {
+      "id": "7757b604e2f14a72a3db3ffc56240138",
+      "name": "all_user_sessions",
+      "label": "All User Sessions",
+      "varType": "reference",
+      "table": "",
+      "category": "vaInputs"
+    },
+    "9fa8130ce7cf46f4a1ae5be96c05c02c": {
+      "id": "9fa8130ce7cf46f4a1ae5be96c05c02c",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "desktop_sessions",
+      "label": "desktop_sessions",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "1ccab3cc7ca343c9811fb42935dcda77": {
+      "id": "1ccab3cc7ca343c9811fb42935dcda77",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "app_sessions",
+      "label": "app_sessions",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "69394f6310884eea9f413bc447158f47": {
+      "id": "69394f6310884eea9f413bc447158f47",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "session_type",
+      "label": "session_type",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "d7e1323c00ae4917991a9681620b303e": {
+      "id": "d7e1323c00ae4917991a9681620b303e",
+      "value": {
+        "mode": "simple",
+        "value": "0"
+      },
+      "name": "desktop_count",
+      "label": "desktop_count",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "a5a812c4dfcd48988951cc8abfc7fb29": {
+      "id": "a5a812c4dfcd48988951cc8abfc7fb29",
+      "value": {
+        "mode": "simple",
+        "value": "0"
+      },
+      "name": "app_count",
+      "label": "app_count",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "8328e79ffff5410d978143bcf5e4dbcc": {
+      "id": "8328e79ffff5410d978143bcf5e4dbcc",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    return 'Application';\n})()\n"
+      },
+      "name": "application",
+      "label": "application",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "35005220d2f3434a97ae002c508ac214": {
+      "id": "35005220d2f3434a97ae002c508ac214",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    return 'Desktop';\n})()\n"
+      },
+      "name": "desktop",
+      "label": "desktop",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "42e540a4cbf94589b20f7123bcadf2b1": {
+      "id": "42e540a4cbf94589b20f7123bcadf2b1",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    return \"success\";\n})()\n"
+      },
+      "name": "success",
+      "label": "success",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "0f11635fb51f4146835ca7e7a8e581dd": {
+      "id": "0f11635fb51f4146835ca7e7a8e581dd",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    return \"failure\";\n})()\n"
+      },
+      "name": "failure",
+      "label": "failure",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "31313be08d2d4dfdacffe8e8367fc35a": {
+      "id": "31313be08d2d4dfdacffe8e8367fc35a",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "user_sessions",
+      "label": "user_sessions",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "e59df2d3606c4a4eb4d7a87dd7780232": {
+      "id": "e59df2d3606c4a4eb4d7a87dd7780232",
+      "name": "created_incident_sys_id",
+      "label": "Created_incident_sys_id",
+      "defaultValue": "created_incident_sys_id",
+      "varType": "string",
+      "category": "vaInputs",
+      "metadata": {
+        "libraryMappingType": "output"
+      },
+      "preventDisable": false
+    }
+  }
+}</graph>
+        <key_phrases>Copy of Reset Citrix Sessions,Reset Citrix Sessions (Template),Reset Citrix session using Connector,VDI restart</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Copy of Reset Citrix Sessions</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <source_topic_id>68466711538030109cc4ddeeff7b12f9</source_topic_id>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-01-24 17:27:15</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>14405ab0979dc5503da33c8e6253af2c</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Copy of Reset Citrix Sessions</sys_name>
+        <sys_package display_value="ecfr02demo IntegrationHub" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ecfr02demo IntegrationHub">43b43f21970dc5103da33c8e6253af3e</sys_scope>
+        <sys_update_name>sys_cb_topic_14405ab0979dc5503da33c8e6253af2c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-24 17:28:28</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=14405ab0979dc5503da33c8e6253af2c"/>
+</record_update>

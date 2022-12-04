@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+    <oauth_entity action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <auth_code_lifespan>0</auth_code_lifespan>
+        <auth_url>https://api.ecobee.com/authorize</auth_url>
+        <certificate_url/>
+        <client_id>GJYt33ERUraXLNjMfWMWqukmh20v53xH</client_id>
+        <client_secret>﷞﷟﷒e91a3f65970dc5103da33c8e6253af0d﷬﷔1﷬﷭eZyVrr1R6HV_5sd6KgHU8A==jT4ChC5xJe5CvQX-HbwuoTJTn7_eNiCEieYuSVzn3M4oDuTE3ltgw7y4f3hZAAsl﷮﷯</client_secret>
+        <client_uuid>cfc9bbe5970dc5103da33c8e6253af0a</client_uuid>
+        <code_challenge_method>S256</code_challenge_method>
+        <comments/>
+        <default_grant_type>authorization_code</default_grant_type>
+        <id_token_lifespan>0</id_token_lifespan>
+        <logo_url/>
+        <message_signature_lifespan>0</message_signature_lifespan>
+        <name>ecobee</name>
+        <oauth_api_script/>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url>https://ecfr02demo.service-now.com/oauth_redirect.do</redirect_url>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt>0</salt>
+        <send_client_credentials_as>request_body_parameter</send_client_credentials_as>
+        <skip_authorize>false</skip_authorize>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-01-14 22:49:23</sys_created_on>
+        <sys_id>43c9bbe5970dc5103da33c8e6253af0b</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>ecobee</sys_name>
+        <sys_package display_value="ecfr02demo IntegrationHub" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ecfr02demo IntegrationHub">43b43f21970dc5103da33c8e6253af3e</sys_scope>
+        <sys_update_name>oauth_entity_43c9bbe5970dc5103da33c8e6253af0b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-14 23:12:55</sys_updated_on>
+        <token_url>https://api.ecobee.com/token</token_url>
+        <type>oauth_provider</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <user/>
+    </oauth_entity>
+</record_update>
