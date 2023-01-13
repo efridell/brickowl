@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_gauge_counts">
+    <sys_gauge_counts action="INSERT_OR_UPDATE">
+        <gauge_id display_value="Additional Metrics">53d6e3231f3121006d691b220e8b70e0</gauge_id>
+        <image/>
+        <name>AverageDeviceCountsInCSDLast365Days</name>
+        <omit_line>false</omit_line>
+        <order/>
+        <override_style/>
+        <query/>
+        <script>SNC.UsageAnalyticsScriptUtils.getCount('AverageDeviceCountsInCSDLast365Days', 'Average number of CIs orchestrated by CSD in last 365 days');</script>
+        <short_description>Average number of CIs orchestrated by CSD in last 365 days</short_description>
+        <sys_class_name>sys_gauge_counts</sys_class_name>
+        <sys_created_by>erik.fridell@snc</sys_created_by>
+        <sys_created_on>2022-01-21 20:13:08</sys_created_on>
+        <sys_id>c579573f9781c1503da33c8e6253af2a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AverageDeviceCountsInCSDLast365Days</sys_name>
+        <sys_package display_value="ecfr02demo IntegrationHub" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ecfr02demo IntegrationHub">43b43f21970dc5103da33c8e6253af3e</sys_scope>
+        <sys_update_name>sys_gauge_counts_c579573f9781c1503da33c8e6253af2a</sys_update_name>
+        <sys_updated_by>erik.fridell@snc</sys_updated_by>
+        <sys_updated_on>2022-01-21 20:13:08</sys_updated_on>
+        <tablename>AverageDeviceCountsInCSDLast365Days</tablename>
+        <use_script>true</use_script>
+    </sys_gauge_counts>
+</record_update>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>false</active>
+        <annotation/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <compiler_build/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <internal_name>ecf_create_ad_user</internal_name>
+        <label_cache>[]</label_cache>
+        <latest_snapshot/>
+        <master_snapshot/>
+        <name>ECF Create AD User</name>
+        <natlang/>
+        <outputs/>
+        <remote_trigger_id/>
+        <run_as>user</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>draft</status>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-01-24 21:09:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>30230b30979109503da33c8e6253af8e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ECF Create AD User</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ecfr02demo IntegrationHub" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ecfr02demo IntegrationHub">43b43f21970dc5103da33c8e6253af3e</sys_scope>
+        <sys_update_name>sys_hub_flow_30230b30979109503da33c8e6253af8e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-24 21:09:33</sys_updated_on>
+        <type>flow</type>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=30230b30979109503da33c8e6253af8e"/>
+    <sys_variable_value action="delete_multiple" query="document_key=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_trigger_instance action="delete_multiple" query="flow=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=30230b30979109503da33c8e6253af8e"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=30230b30979109503da33c8e6253af8e^sys_idNOT IN78230b30979109503da33c8e6253af91"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>30230b30979109503da33c8e6253af8e</id>
+        <name>ECF Create AD User</name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-01-24 21:09:33</sys_created_on>
+        <sys_id>78230b30979109503da33c8e6253af91</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-01-24 21:09:33</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=78230b30979109503da33c8e6253af91"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_action_instance action="delete_multiple" query="flow=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_sub_flow_instance action="delete_multiple" query="flow=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_flow_logic action="delete_multiple" query="flow=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=30230b30979109503da33c8e6253af8e"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=30230b30979109503da33c8e6253af8e"/>
+    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_flow_input_30230b30979109503da33c8e6253af8e"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_30230b30979109503da33c8e6253af8e"/>
+    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_flow_output_30230b30979109503da33c8e6253af8e"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_30230b30979109503da33c8e6253af8e"/>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=30230b30979109503da33c8e6253af8e"/>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=30230b30979109503da33c8e6253af8e"/>
+</record_update>
