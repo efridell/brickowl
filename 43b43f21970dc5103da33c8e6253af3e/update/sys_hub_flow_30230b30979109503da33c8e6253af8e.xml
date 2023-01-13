@@ -17,6 +17,7 @@
         <name>ECF Create AD User</name>
         <natlang/>
         <outputs/>
+        <pre_compiled>false</pre_compiled>
         <remote_trigger_id/>
         <run_as>user</run_as>
         <run_with_roles/>
@@ -33,9 +34,9 @@
         <sys_mod_count>0</sys_mod_count>
         <sys_name>ECF Create AD User</sys_name>
         <sys_overrides/>
-        <sys_package display_value="ecfr02demo IntegrationHub" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
+        <sys_package display_value="Brickowl Integration" source="x_snc_ecfr02demo_0">43b43f21970dc5103da33c8e6253af3e</sys_package>
         <sys_policy/>
-        <sys_scope display_value="ecfr02demo IntegrationHub">43b43f21970dc5103da33c8e6253af3e</sys_scope>
+        <sys_scope display_value="Brickowl Integration">43b43f21970dc5103da33c8e6253af3e</sys_scope>
         <sys_update_name>sys_hub_flow_30230b30979109503da33c8e6253af8e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2022-01-24 21:09:33</sys_updated_on>
